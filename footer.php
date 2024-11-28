@@ -182,16 +182,6 @@
                                                     <div id="product_modal_content">
                                                         <p>Short-sleeved blouse with feminine draped sleeve detail.</p>    
                                                     </div>
-                                                    <div class="product_variants">
-                                                        <div class="product_variants_item modal_item">
-                                                            <span class="control_label">Size</span>
-                                                            <select id="group_1">
-                                                                <option value="1">S</option>
-                                                                <option value="2" selected="selected">M</option>
-                                                                <option value="3">L</option>
-                                                            </select>    
-                                                        </div>   
-                                                        
                                                        <div class="quickview_plus_minus">
                                                             <span class="control_label">Quantity</span>
                                                             <div class="quickview_plus_minus_inner">

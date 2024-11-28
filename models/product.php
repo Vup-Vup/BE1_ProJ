@@ -1,7 +1,38 @@
-<?php 
-class Product extends Db{
-    public function getAllProducts(){
+<?php
+class Product extends Db
+{
+    public function getAllProducts()
+    {
         $sql = self::$connection->prepare("SELECT * FROM `products`");
+        $sql->execute();
+        $products = array();
+        $products = $sql->get_result()->fetch_all(MYSQLI_ASSOC);
+        return $products;
+    }
+    public function getAllProducts2($page, $count)
+    {
+        $start = ($page - 1) * $count;
+        $sql = self::$connection->prepare("SELECT * FROM `products` LIMIT ?,?");
+        $sql->bind_param("ii", $start, $count);
+        $sql->execute();
+        $products = array();
+        $products = $sql->get_result()->fetch_all(MYSQLI_ASSOC);
+        return $products;
+    }
+    public function getAllProductsFeature($start, $count)
+    {
+        $sql = self::$connection->prepare("SELECT * FROM `products` WHERE `feature` = 1 LIMIT ?,?");
+        $sql->bind_param("ii", $start, $count);
+        $sql->execute();
+        $products = array();
+        $products = $sql->get_result()->fetch_all(MYSQLI_ASSOC);
+        return $products;
+    }
+    public function getNewProducts($start, $count)
+    {
+        $sql = self::$connection->prepare("SELECT * FROM `products` 
+        ORDER BY `created_at` DESC LIMIT ?,?");
+        $sql->bind_param("ii", $start, $count);
         $sql->execute();
         $products = array();
         $products = $sql->get_result()->fetch_all(MYSQLI_ASSOC);
@@ -32,7 +63,7 @@ class Product extends Db{
         $products = $sql->get_result()->fetch_all(MYSQLI_ASSOC);
         return $products;
     }
-    public function getAllproductsByCate($cate_id)
+    public function getAllProductsByCate($cate_id)
     {
         $sql = self::$connection->prepare("SELECT * FROM `products` 
         WHERE `category` = ?");
@@ -42,7 +73,7 @@ class Product extends Db{
         $products = $sql->get_result()->fetch_all(MYSQLI_ASSOC);
         return $products;
     }
-    public function getproductsByCate($cate_id, $page, $count)
+    public function getProductsByCate($cate_id, $page, $count)
     {
         // Tính số thứ tự trang bắt đầu
         $start = ($page - 1) * $count;
@@ -79,11 +110,13 @@ class Product extends Db{
         $prev = "";
         $next = "";
         for ($j = $from; $j <= $to; $j++) {
-            $link = $link . "<a  href = '$url&page=$j'> $j </a>";
+            if ($page == $j) {
+                $link = $link . "<a class = " . "current_page" . "  href = '$url&page=$j'> $j </a>";
+            } else  $link = $link . "<a  href = '$url&page=$j'> $j </a>";
         }
         if ($page > 1) {
             $prevPage = $page - 1;
-            $prev = "<a  href='$url&page=$prevPage'> Prev Link </a>";
+            $prev = "<a href='$url&page=$prevPage'> Prev Link </a>";
         }
         if ($page < $totalLinks) {
             $nextPage = $page + 1;
