@@ -108,14 +108,14 @@ include "header.php";
                                                     <span class="new_badge"><?php echo $cateName[0]['name'] ?></span>
                                                     <span class="discount_price">-5%</span>
                                                     <div class="product_img">
-                                                        <a href="#">
+                                                        <a href="product-details.php?product_id=<?php echo $value['id']?>">
                                                             <img src="<?php echo $value['image'] ?>" alt="">
                                                         </a>
                                                     </div>
                                                     <div class="product__content text-center">
                                                         <div class="produc_desc_info">
                                                             <div class="product_title">
-                                                                <h4><a href="product-details.html"><?php echo $value['name'] ?></a></h4>
+                                                                <h4><a href="product-details.php?product_id=<?php echo $value['id']?>"><?php echo $value['name'] ?></a></h4>
                                                             </div>
                                                             <div class="product_price">
                                                                 <p><?php echo $value['price'] ?>,000₫</p>

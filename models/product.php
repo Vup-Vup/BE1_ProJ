@@ -9,6 +9,14 @@ class Product extends Db
         $products = $sql->get_result()->fetch_all(MYSQLI_ASSOC);
         return $products;
     }
+    public function getProduct($product_id)
+    {
+        $sql = self::$connection->prepare("SELECT * FROM `products` WHERE `id` = ?");
+        $sql->bind_param("i",$product_id);
+        $sql->execute();
+        $product = $sql->get_result()->fetch_assoc();
+        return $product;
+    }
     public function getAllProducts2($page, $count)
     {
         $start = ($page - 1) * $count;
