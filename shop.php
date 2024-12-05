@@ -63,7 +63,7 @@ include "header.php";
                         <h3>SHOP</h3>
                     </div>
                     <?php
-                    
+
                     // hiển thị 5 sản phẩm trên 1 trang
                     $count = 8;
                     // Lấy số trang trên thanh địa chỉ
@@ -71,8 +71,8 @@ include "header.php";
                     // Tính tổng số dòng, ví dụ kết quả là 18
                     $total = count($getAllProducts);
                     // lấy đường dẫn đến file hiện hành
-                    $url = $_SERVER['PHP_SELF']."?all";
-                    $getAllProducts2 = $product->getAllProducts2($page,$count);
+                    $url = $_SERVER['PHP_SELF'] . "?all";
+                    $getAllProducts2 = $product->getAllProducts2($page, $count);
                     ?>
                     <div class="tav_menu_wrapper">
                         <div class="row align-items-center">
@@ -96,8 +96,8 @@ include "header.php";
                         <div class="tab-content">
                             <div class="tab-pane fade show active" id="shop_active">
                                 <div class="row">
-                                    <?php 
-                                    
+                                    <?php
+
                                     foreach ($getAllProducts2 as $value):
                                         $cateName = $category->getNameById($value['category']);
 
@@ -108,14 +108,14 @@ include "header.php";
                                                     <span class="new_badge"><?php echo $cateName[0]['name'] ?></span>
                                                     <span class="discount_price">-5%</span>
                                                     <div class="product_img">
-                                                        <a href="product-details.php?product_id=<?php echo $value['id']?>">
+                                                        <a href="product-details.php?product_id=<?php echo $value['id'] ?>">
                                                             <img src="<?php echo $value['image'] ?>" alt="">
                                                         </a>
                                                     </div>
                                                     <div class="product__content text-center">
                                                         <div class="produc_desc_info">
                                                             <div class="product_title">
-                                                                <h4><a href="product-details.php?product_id=<?php echo $value['id']?>"><?php echo $value['name'] ?></a></h4>
+                                                                <h4><a href="product-details.php?product_id=<?php echo $value['id'] ?>"><?php echo $value['name'] ?></a></h4>
                                                             </div>
                                                             <div class="product_price">
                                                                 <p><?php echo $value['price'] ?>,000₫</p>
@@ -137,11 +137,10 @@ include "header.php";
                                 </div>
                             </div>
 
-
                             <div class="tab-pane fade" id="featured_active" role="tabpanel">
                                 <?php
-                                $getProductsByCate = $product->getProductsByCate($cate_id, $page, $count);
-                                foreach ($getProductsByCate as $value):
+                                $getAllProducts2_1 = $product->getAllProducts2($page, $count);
+                                foreach ($getAllProducts2_1 as $value):
 
                                 ?>
                                     <div class="tab_product_bottom_wrapper">
@@ -151,7 +150,7 @@ include "header.php";
                                                     <span class="new_badge"><?php echo $cateName['0']['name'] ?></span>
                                                     <span class="discount_price">-5%</span>
                                                     <div class="product_img">
-                                                        <a href="#">
+                                                        <a href="product-details.php?product_id=<?php echo $value['id'] ?>">
                                                             <img src="<?php echo $value['image'] ?>" alt="">
                                                         </a>
                                                     </div>
@@ -162,7 +161,7 @@ include "header.php";
                                                 <div class="product__content text-left">
                                                     <div class="produc_desc_info">
                                                         <div class="product_title title_shop">
-                                                            <h4><a href="product-details.html"><?php echo $value['name'] ?></a></h4>
+                                                            <h4><a href="product-details.php?product_id=<?php echo $value['id'] ?>"><?php echo $value['name'] ?></a></h4>
                                                         </div>
                                                         <div class="product_price price_shop">
                                                             <p><?php echo $value['price'] ?>,000₫</p>
@@ -285,3 +284,4 @@ include "header.php";
 <?php
 include "footer.php";
 ?>
+1
