@@ -3,10 +3,14 @@ require "config.php";
 require "models/db.php";
 require "models/category.php";
 require "models/product.php";
+require "models/cart.php";
 $product = new Product;
 $category = new Category;
+$cart = new Cart;
 $getAllCates = $category->getAllCate();
 $getAllProducts = $product->getAllProducts();
+
+
 ?>
 <!doctype html>
 <html class="no-js" lang="zxx">
@@ -32,6 +36,31 @@ $getAllProducts = $product->getAllProducts();
 	<link rel="stylesheet" href="assets/css/bundle.css">
 	<link rel="stylesheet" href="assets/css/style.css">
 	<link rel="stylesheet" href="assets/css/responsive.css">
+	<script>
+		document.querySelectorAll('.add-to-cart-btn').forEach(button => {
+			button.addEventListener('click', function() {
+				// Lấy giá trị từ input hidden gần nút được nhấn
+				const productId = this.closest('.add-to-cart-form').querySelector('input[name="id"]').value;
+
+				// Gửi dữ liệu bằng Fetch API
+				fetch('process_cart.php', {
+						method: 'POST',
+						headers: {
+							'Content-Type': 'application/x-www-form-urlencoded',
+						},
+						body: `id=${productId}`, // Dữ liệu gửi đi
+					})
+					.then(response => response.text())
+					.then(data => {
+						alert(`Phản hồi từ server: ${data}`);
+					})
+					.catch(error => {
+						console.error('Lỗi xảy ra:', error);
+						alert('Không thể thêm sản phẩm vào giỏ hàng.');
+					});
+			});
+		});
+	</script>
 	<script src="assets/js/vendor/modernizr-2.8.3.min.js"></script>
 </head>
 
@@ -139,14 +168,14 @@ $getAllProducts = $product->getAllProducts();
 							<div class="menu menu_three">
 								<nav>
 									<ul class="menu_three_inner">
-										<li class="active"><a href="#">Home</a>
+										<li class="active"><a href="index.php">Home</a>
 										<li><a href="shop.php">shop</a> </li>
 										<li><a href="about.php">about us </a> </li>
 										<li>
 											<div class="search_box search_three">
 												<div class="search_inner">
-													<form action="#">
-														<input type="text" placeholder="Search our catalog">
+													<form action="result.php" method="get">
+														<input name="keyword" type="text" placeholder="Search our catalog">
 														<button type="submit"><i class="ion-ios-search"></i></button>
 													</form>
 												</div>
