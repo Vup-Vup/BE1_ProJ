@@ -37,7 +37,7 @@
                                                             <li>
                                                                 <form action="add-to-cart-form" method="post">
                                                                     <input type="hidden" name="id" value="<?php echo $value['id'] ?>">
-                                                                    <button type="button" class="add-to-cart-btn"><i class="ion-android-cart"></i></button>
+                                                                    <input type="submit" class="submit-add-to-cart-btn" name = "add-to-cart"><i class="ion-android-cart"></i></button>
                                                                 </form>
 
                                                             </li>

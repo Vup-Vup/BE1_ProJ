@@ -8,7 +8,7 @@ include "header.php";
             <div class="col-12">
                 <nav>
                     <ul>
-                        <li><a href="index.html">Home ></a></li>
+                        <li><a href="index.php">Home ></a></li>
                         <li>Cart</li>
                     </ul>
                 </nav>
@@ -34,64 +34,41 @@ include "header.php";
                                     <th class="product-remove">Remove</th>
                                 </tr>
                             </thead>
+                            <?php 
+                            if(isset($_SESSION['cart'])):
+                                foreach($_SESSION["cart"] as $value):
+                            ?>
                             <tbody>
                                 <tr>
-                                    <td class="product-thumbnail"><img src="assets/img/product/1.jpg" alt=""></td>
-                                    <td class="product-name"><a href="#">Vestibulum suscipit</a></td>
-                                    <td class="product-price"><span class="amount">£165.00</span></td>
+                                    <td class="product-thumbnail"><img src="<?php echo $value['image']?>" alt=""></td>
+                                    <td class="product-name"><a href="product-details.php?product_id=<?php echo $value['id'] ?>"><?php echo $value['name'] ?></a></td>
+                                    <td class="product-price"><span class="amount"><?php echo $value['price'] ?>,000₫</span></td>
                                     <td class="product-quantity">
                                         <div class="quickview_plus_minus quick_cart">
                                             <div class="quickview_plus_minus_inner">
                                                 <div class="cart-plus-minus cart_page">
-                                                    <input type="text" value="02" name="qtybutton" class="cart-plus-minus-box">
+                                                    <input type="text" value="<?php echo $value['quantity'] ?>" name="qtybutton" class="cart-plus-minus-box">
                                                 </div>
                                             </div>
                                         </div>
                                     </td>
-                                    <td class="product-subtotal">£165.00</td>
+                                    <td class="product-subtotal"><?php echo $value['price']*$value['quantity']?>,000₫</td>
                                     <td class="product-remove"><a href="#">X</a></td>
                                 </tr>
                             </tbody>
-                            <tbody>
-                                <tr>
-                                    <td class="product-thumbnail"><img src="assets/img/product/4.jpg" alt=""></td>
-                                    <td class="product-name"><a href="#">Vestibulum dictum magna</a></td>
-                                    <td class="product-price"><span class="amount">£165.00</span></td>
-                                    <td class="product-quantity">
-                                        <div class="quickview_plus_minus quick_cart">
-                                            <div class="quickview_plus_minus_inner">
-                                                <div class="cart-plus-minus cart_page">
-                                                    <input type="text" value="02" name="qtybutton" class="cart-plus-minus-box">
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </td>
-                                    <td class="product-subtotal">£165.00</td>
-                                    <td class="product-remove"><a href="#">X</a></td>
-                                </tr>
-                            </tbody>
+                            <?php endforeach; endif;?>
                         </table>
                     </div>
                     <div class="row table-responsive_bottom">
                         <div class="col-lg-7 col-sm-7 col-md-7">
                             <div class="buttons-carts">
                                 <input value="Update Cart" type="submit">
-                                <a href="#">Continue Shopping</a>
-                            </div>
-                            <div class="buttons-carts coupon">
-                                <h3>Coupon</h3>
-                                <p>Enter your coupon code if you have one.</p>
-                                <input placeholder="Coupon code" type="text">
-                                <input value="Apply Coupon" type="submit">
+                                <a href="shop.php">Go to Shopping</a>
                             </div>
                         </div>
                         <div class="col-lg-5 col-sm-5 col-md-5">
                             <div class="cart_totals  text-right">
                                 <h2>Cart Totals</h2>
-                                <div class="cart-subtotal">
-                                    <span>Subtotal</span>
-                                    <span>£215.00</span>
-                                </div>
                                 <div class="order-total">
                                     <span><strong>Total</strong> </span>
                                     <span><strong>£215.00 </strong> </span>

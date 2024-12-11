@@ -36,9 +36,9 @@
 				 									<div class="product__hover">
 				 										<ul>
 				 											<li>
-				 												<form action="models/cart.php" method="post">
-				 													<input type="hidden" name="id" value="<?php echo $value['id'] ?>">
-				 													<button><i class="ion-android-cart"></i></button>
+				 												<form action="add-to-cart.php?id=<?php echo $value['id'] ?>" method="post">
+
+				 													<button type="submit" name="add-to-cart"><i class="ion-android-cart"></i></button>
 				 												</form>
 				 											</li>
 				 											<li><a class="cart-fore" href="#" data-toggle="modal" data-target="#my_modal" title="Quick View"><i class="ion-android-open"></i></a></li>
