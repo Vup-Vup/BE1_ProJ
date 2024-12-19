@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th12 19, 2024 lúc 10:43 AM
--- Phiên bản máy phục vụ: 10.4.28-MariaDB
--- Phiên bản PHP: 8.2.4
+-- Thời gian đã tạo: Th12 19, 2024 lúc 05:55 PM
+-- Phiên bản máy phục vụ: 10.4.32-MariaDB
+-- Phiên bản PHP: 8.2.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -50,11 +50,23 @@ INSERT INTO `categories` (`id`, `name`) VALUES
 
 CREATE TABLE `orderdetails` (
   `id` int(11) NOT NULL,
-  `oder` int(11) NOT NULL,
   `product` int(11) NOT NULL,
-  `quantity` int(11) NOT NULL,
-  `price` decimal(10,2) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+  `orders` int(11) NOT NULL,
+  `quantity` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Đang đổ dữ liệu cho bảng `orderdetails`
+--
+
+INSERT INTO `orderdetails` (`id`, `product`, `orders`, `quantity`) VALUES
+(1, 2, 1, 1),
+(2, 2, 3, 1),
+(3, 3, 4, 1),
+(4, 4, 6, 1),
+(5, 2, 8, 1),
+(6, 16, 9, 1),
+(7, 2, 13, 2);
 
 -- --------------------------------------------------------
 
@@ -64,11 +76,32 @@ CREATE TABLE `orderdetails` (
 
 CREATE TABLE `orders` (
   `id` int(11) NOT NULL,
-  `user` int(11) NOT NULL,
-  `date` int(11) NOT NULL,
-  `total` decimal(10,2) NOT NULL,
-  `status` varchar(20) NOT NULL DEFAULT 'chưa'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+  `fullname` varchar(100) NOT NULL,
+  `email` varchar(100) NOT NULL,
+  `phone` varchar(100) NOT NULL,
+  `address` varchar(225) NOT NULL,
+  `total` int(11) NOT NULL,
+  `note` text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Đang đổ dữ liệu cho bảng `orders`
+--
+
+INSERT INTO `orders` (`id`, `fullname`, `email`, `phone`, `address`, `total`, `note`) VALUES
+(1, 'vuxx', '123@gmail.com', '111111', 'asdasdfasdf', 154, 'hehe'),
+(2, 'vuxx', '123@gmail.com', '111111', 'asdasdfasdf', 0, 'hehe'),
+(3, 'vuxx', '123@gmail.com', '111111', 'asdasdfasdf', 154, ''),
+(4, 'vuxx', '123@gmail.com', '111111', 'asdasdfasdf', 139, ''),
+(5, 'vuxx', '123@gmail.com', '111111', 'asdasdfasdf', 0, ''),
+(6, 'vuxx', '123@gmail.com', '111111', 'asdasdfasdf', 45, ''),
+(7, 'vuxx', '123@gmail.com', '111111', 'asdasdfasdf', 0, ''),
+(8, 'vuxx', '123@gmail.com', '111111', 'asdasdfasdf', 154, ''),
+(9, 'vuxx', '123@gmail.com', '111111', 'asdasdfasdf', 56, ''),
+(10, 'vuxx', '123@gmail.com', '111111', 'asdasdfasdf', 0, ''),
+(11, 'vuxx', '123@gmail.com', '111111', 'asdasdfasdf', 0, ''),
+(12, 'vuxx', '123@gmail.com', '111111', 'asdasdfasdf', 0, ''),
+(13, 'vuxx', '123@gmail.com', '111111', 'asdasdfasdf', 308, '');
 
 -- --------------------------------------------------------
 
@@ -93,7 +126,6 @@ CREATE TABLE `products` (
 --
 
 INSERT INTO `products` (`id`, `name`, `image`, `category`, `updated_at`, `created_at`, `price`, `content`, `feature`) VALUES
-(1, 'Táo Queen Organic New Zealand', 'untitled_design_99eaeb7141d44f45a924f6890f8222c6.webp', 1, '2024-12-18 13:39:59', '2024-11-28 08:03:13', 158, 'Táo Queen hữu cơ từ New Zealand là một loại trái cây cao cấp, nổi bật với vị ngọt thanh, giòn tan và hương thơm tự nhiên đặc trưng. Với nguồn gốc từ những trang trại hữu cơ hàng đầu tại New Zealand, táo Queen không chỉ ngon mà còn an toàn cho sức khỏe người tiêu dùng. Được chăm sóc kỹ lưỡng và thu hoạch theo tiêu chuẩn nghiêm ngặt, loại táo này ngày càng chiếm được lòng tin của người tiêu dùng trên toàn thế giới.', 1),
 (2, 'Táo Diva Hữu Cơ', 'thiet-ke-khong-ten-1_81ae5c49b0b34d408d367abb19295f6c_grande.webp', 1, '2024-12-18 13:40:39', '2024-11-28 08:03:13', 154, 'Được đặt tên theo từ tiếng Ý có nghĩa là ‘nữ thần’ hoặc ‘quý cô tốt đẹp’, Diva là một loại táo hảo hạng, có hương vị đặc biệt có nguồn gốc từ những vườn cây ăn trái xanh sạch, ngập tràn ánh nắng của Vịnh Hawkes, New Zealand.', 0),
 (3, 'Táo Xanh Grany Smith Hữu Cơ', 'add_a_heading__1__66a31254bea34d099e0f7eb57642d285_grande.webp', 1, '2024-12-18 13:41:48', '2024-11-28 08:03:13', 139, 'Thông tin sản phẩm đang được cập nhật', 0),
 (4, 'Chuối Laba Loại 1 Org', 'add_a_heading_9b34415e7c19413392dc5d48fe06992c_grande.jpg', 1, '2024-12-18 13:42:22', '2024-11-28 08:10:41', 45, 'Chuối Laba là một loại chuối đặc sản nổi tiếng của Việt Nam, chủ yếu được trồng tại vùng Lâm Đồng. Chuối Laba không chỉ được biết đến với hương vị thơm ngon, mà còn có giá trị dinh dưỡng cao, được nhiều người ưa chuộng.', 0),
@@ -140,19 +172,23 @@ CREATE TABLE `thanhvien` (
   `id` int(255) NOT NULL,
   `username` varchar(255) NOT NULL,
   `password` varchar(255) NOT NULL,
-  `level` int(255) NOT NULL
+  `level` int(255) NOT NULL,
+  `fullName` varchar(100) NOT NULL,
+  `company` varchar(100) NOT NULL,
+  `email` varchar(100) NOT NULL,
+  `phone` varchar(100) NOT NULL,
+  `address` varchar(225) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Đang đổ dữ liệu cho bảng `thanhvien`
 --
 
-INSERT INTO `thanhvien` (`id`, `username`, `password`, `level`) VALUES
-(1, 'admin', '123456', 1),
-(2, 'nguyenvana', '111111', 2),
-(11, '123', '111', 2),
-(12, '111', '123', 2),
-(16, 'nguyenvana', '123456', 2);
+INSERT INTO `thanhvien` (`id`, `username`, `password`, `level`, `fullName`, `company`, `email`, `phone`, `address`) VALUES
+(1, 'admin', '123456', 1, '', '', '', '', ''),
+(2, 'nguyenvana', '111111', 2, '', '', '', '', ''),
+(11, '123', '111', 2, '', '', '', '', ''),
+(17, 'vup', '111', 2, 'vuxx', '111', '123@gmail.com', '111111', 'asdasdfasdf');
 
 --
 -- Chỉ mục cho các bảng đã đổ
@@ -196,31 +232,31 @@ ALTER TABLE `thanhvien`
 -- AUTO_INCREMENT cho bảng `categories`
 --
 ALTER TABLE `categories`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT cho bảng `orderdetails`
 --
 ALTER TABLE `orderdetails`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT cho bảng `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT cho bảng `products`
 --
 ALTER TABLE `products`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=40;
 
 --
 -- AUTO_INCREMENT cho bảng `thanhvien`
 --
 ALTER TABLE `thanhvien`
-  MODIFY `id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
