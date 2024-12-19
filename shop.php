@@ -65,7 +65,7 @@ include "header.php";
                     <?php
 
                     // hiển thị 5 sản phẩm trên 1 trang
-                    $count = 6;
+                    $count = 8;
                     // Lấy số trang trên thanh địa chỉ
                     $page = isset($_GET['page']) ? $_GET['page'] : 1;
                     // Tính tổng số dòng, ví dụ kết quả là 18
@@ -109,7 +109,7 @@ include "header.php";
                                                     <span class="discount_price">-5%</span>
                                                     <div class="product_img">
                                                         <a href="product-details.php?product_id=<?php echo $value['id'] ?>">
-                                                            <img src="<?php echo $value['image'] ?>" alt="">
+                                                            <img src="./assets/img/image/<?php echo $value['image'] ?>" alt="">
                                                         </a>
                                                     </div>
                                                     <div class="product__content text-center">
@@ -154,7 +154,7 @@ include "header.php";
                                                     <span class="discount_price">-5%</span>
                                                     <div class="product_img">
                                                         <a href="product-details.php?product_id=<?php echo $value['id'] ?>">
-                                                            <img src="<?php echo $value['image'] ?>" alt="">
+                                                            <img src="./assets/img/image/<?php echo $value['image'] ?>" alt="">
                                                         </a>
                                                     </div>
 

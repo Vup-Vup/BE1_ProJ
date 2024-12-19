@@ -4982,8 +4982,23 @@ section.main-content-area.error_pages {
   display: block;
 }
 
-.save-button {
+.save-button button{
   margin-top: 25px;
+  padding: 12px 40px;
+  margin-top: 10px;
+  background: #78a206;
+  color: #fff;
+  text-transform: uppercase;
+  font-weight: 700;
+  -webkit-transition: .3s;
+  transition: .3s;
+  cursor: pointer;
+  border-radius: 25px;
+  border: 1px solid transparent;
+}
+.save-button button:hover{
+  background: #333333;
+  color: #fff;
 }
 
 .dashboard-content .save-button a,

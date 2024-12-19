@@ -34,7 +34,7 @@ if (isset($_GET['keyword'])) {
                             <div class="single_product__inner">
                                 <div class="product_img">
                                     <a href="#">
-                                        <img src="<?php echo $value['image'] ?>" alt="">
+                                        <img src="./assets/img/image/<?php echo $value['image'] ?>" alt="">
                                     </a>
                                 </div>
                                 <div class="product__content text-center">

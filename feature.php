@@ -20,7 +20,7 @@
                                                 <span class="new_badge">hot</span>
                                                 <div class="product_img">
                                                     <a href="product-details.php?product_id=<?php echo $value['id'] ?>">
-                                                        <img src="<?php echo $value['image'] ?>" alt="">
+                                                        <img src="./assets/img/image/<?php echo $value['image'] ?>" alt="">
                                                     </a>
                                                 </div>
                                                 <div class="product__content text-center">

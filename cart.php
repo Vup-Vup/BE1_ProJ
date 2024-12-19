@@ -1,16 +1,6 @@
 <?php
 include "header.php";
-if (isset($_POST['update'])) {
-    if (isset($_SESSION['cart'])) {
-        foreach ($_SESSION['cart'] as $value) {
-            if ($_POST['so_luong' . $value['id']] <= 0) {
-                unset($_SESSION['cart'][$value['id']]);
-            } else {
-                $_SESSION['cart'][$value['id']]['quantity'] = $_POST['so_luong' . $value['id']];
-            }
-        }
-    }
-}
+
 
 
 
@@ -35,7 +25,7 @@ if (isset($_POST['update'])) {
     <div class="container">
         <div class="row">
             <div class="col-12">
-                <form action="cart.php" method="post">
+                <form action="update.php" method="post">
                     <div class="table-content table-responsive">
                         <table>
                             <thead>
@@ -57,7 +47,7 @@ if (isset($_POST['update'])) {
                             ?>
                                     <tbody>
                                         <tr>
-                                            <td class="product-thumbnail"><img src="<?php echo $value['image'] ?>" alt=""></td>
+                                            <td class="product-thumbnail"><img src="./assets/img/image/<?php echo $value['image'] ?>" alt=""></td>
                                             <td class="product-name"><a href="product-details.php?product_id=<?php echo $value['id'] ?>"><?php echo $value['name'] ?></a></td>
                                             <td class="product-price"><span class="amount"><?php echo $value['price'] ?>,000₫</span></td>
                                             <td class="product-quantity">

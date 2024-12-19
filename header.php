@@ -4,26 +4,28 @@ require "config.php";
 require "models/db.php";
 require "models/category.php";
 require "models/product.php";
-require "models/cart.php";
 require "models/thanhvien.php";
+require "models/oder.php";
+$order = new Order;
 $thanhvien = new Thanhvien;
 $product = new Product;
 $category = new Category;
-$cart = new Cart;
 $getAllCates = $category->getAllCate();
 $getAllProducts = $product->getAllProducts();
 
 if (isset($_POST['Login'])) {
 	$username = $_POST['username'];
 	$password = $_POST['password'];
+	$hashed_password = password_hash($password, PASSWORD_DEFAULT);
 
 	$user = $thanhvien->getThanhVien($username, $password);
-	if (($user) != null) {
-		$getCart = $cart->getCart($user);
-		$_SESSION['user'] = $user;
+	if (($user) !== null) {
+		$_SESSION['user'] = $user['id'];
 	} else {
-		echo "tài khoản hoặc mật khẩu sai";
+		$_SESSION['user'] = 0;
+		header('location:login.php');
 	}
+	
 }
 
 ?>
@@ -69,11 +71,10 @@ if (isset($_POST['Login'])) {
 									<?php if (isset($_SESSION['user'])) {
 										echo '
 									<li class="language_wrapper_two">
-										<a href="my-account.php">
+										<a href="my_account.php">
 											<span>My Account  <i class="fa fa-angle-down"></i> </span>
 										</a>
 										<ul class="."account__name">
-											<li><a href="wishlist.php">Wishlist</a></li>
 											<li><a href="logout.php">Logout</a></li>
 										</ul>
 									</li>

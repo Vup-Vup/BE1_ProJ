@@ -37,6 +37,16 @@
                                     <input name="password" type="password">
                                 </div>
                             </div>
+                            <div class = "col-12">
+                            <?php if(isset($_SESSION['user'])){
+                                if($_SESSION['user']==0){?>
+                            <div class="input_text">
+                                    <label for="" style="color: red;">Username or Password incorrect !!!</label>
+                                    
+                                </div>
+                                
+                            </div>
+                            <?php }}?>
                             <div class="col-12">
                                 <div class="login_submit">
                                     <input class="inline" value="Login" name="Login" type="submit">

@@ -21,7 +21,7 @@
                             <div class="single_small_product small_three">
                                 <div class="product_thumb">
                                     <a href="product-details.php?product_id=<?php echo $value['id'] ?>">
-                                        <img src="<?php echo $value['image'] ?>" alt="">
+                                        <img src="./assets/img/image/<?php echo $value['image'] ?>" alt="">
                                     </a>
                                 </div>
                                 <div class="product_content">
@@ -49,7 +49,7 @@
                             <div class="single_small_product small_three">
                                 <div class="product_thumb">
                                     <a href="product-details.php?product_id=<?php echo $value['id'] ?>">
-                                        <img src="<?php echo $value['image'] ?>" alt="">
+                                        <img src="./assets/img/image/<?php echo $value['image'] ?>" alt="">
                                     </a>
                                 </div>
                                 <div class="product_content">
@@ -89,7 +89,7 @@
                             <div class="single_small_product small_three">
                                 <div class="product_thumb">
                                     <a href="product-details.php?product_id=<?php echo $value['id'] ?>">
-                                        <img src="<?php echo $value['image'] ?>" alt="">
+                                        <img src="./assets/img/image/<?php echo $value['image'] ?>" alt="">
                                     </a>
                                 </div>
                                 <div class="product_content">
@@ -117,7 +117,7 @@
                             <div class="single_small_product small_three">
                                 <div class="product_thumb">
                                     <a href="product-details.php?product_id=<?php echo $value['id'] ?>">
-                                        <img src="<?php echo $value['image'] ?>" alt="">
+                                        <img src="./assets/img/image/<?php echo $value['image'] ?>" alt="">
                                     </a>
                                 </div>
                                 <div class="product_content">
@@ -157,7 +157,7 @@
                             <div class="single_small_product small_three">
                                 <div class="product_thumb">
                                     <a href="product-details.php?product_id=<?php echo $value['id'] ?>">
-                                        <img src="<?php echo $value['image'] ?>" alt="">
+                                        <img src="./assets/img/image/<?php echo $value['image'] ?>" alt="">
                                     </a>
                                 </div>
                                 <div class="product_content">
@@ -185,7 +185,7 @@
                             <div class="single_small_product small_three">
                                 <div class="product_thumb">
                                     <a href="product-details.php?product_id=<?php echo $value['id'] ?>">
-                                        <img src="<?php echo $value['image'] ?>" alt="">
+                                        <img src="./assets/img/image/<?php echo $value['image'] ?>" alt="">
                                     </a>
                                 </div>
                                 <div class="product_content">
